@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- Unicons CSS -->
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     
+<!--sweatalert.js-->
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+     
+
+</head>
+
+<style>
+
+/*here is the code of the search bar css*/
+
+.input-box {
+
+  
+
+position: relative;
+height: 76px;
+max-width: 750px;
+width: 100%;
+background: #fff;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+margin: auto;
+}
+.input-box i,
+.input-box .searchbutton {
+position: absolute!important;
+top: 50% !important;
+transform: translateY(-50%)!important;
+}
+.input-box i {
+left: 20px;
+font-size: 30px;
+color: #707070;
+}
+.input-box input {
+height: 100%;
+width: 100%;
+outline: none;
+font-size: 18px;
+font-weight: 400;
+border: none;
+padding: 0 155px 0 65px;
+background-color: transparent;
+margin: auto;
+}
+.input-box .searchbutton {
+right: 20px !important;
+font-size: 16px !important;
+font-weight: 400 !important;
+color: #fff !important;
+border: none !important;
+padding: 12px 30px !important;
+border-radius: 6px !important;
+background-color:#04AA6D !important;
+cursor: pointer;
+
+}
+.input-box .searchbutton:active {
+transform: translateY(-50%) scale(0.98);
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+.input-box {
+  height: 66px;
+  margin: 0 8px;
+}
+.input-box i {
+  left: 12px;
+  font-size: 25px;
+}
+.input-box input {
+  padding: 0 112px 0 50px;
+}
+.input-box .searchbutton {
+  right: 12px;
+  font-size: 14px;
+  padding: 8px 18px;
+}
+}
+
+
+
+.a{
+margin: 0px;
+
+display: flex;
+
+flex-wrap: nowrap;
+
+
+
+box-shadow: 0 4px 3px -6px black;
+width: 100%;
+
+margin-bottom: 40px;
+}
+
+
+
+
+
+.imageblog img{
+
+
+width: 100%;
+
+transition: transform 1s;
+}
+
+
+.a img:hover{
+
+transform: scale(1.2);
+
+}
+
+.namedate{
+
+
+display: flex;
+justify-content: space-around;
+
+
+
+}
+.name a:hover{
+
+
+color: #04AA6D !important;
+}
+@media screen and (max-width: 1200px) {
+.profilecard{
+margin-top: 30px;
+}
+.profilecard{
+
+width: 80%;
+}
+}
+
+
+
+.recentposts{
+
+display: flex;
+flex-direction: column;
+
+max-width: 750px ;
+overflow: hidden;
+
+box-shadow : 0 3px 10px rgb(0 0 0  /0.2);
+
+flex-wrap: nowrap;
+	
+
+		transition: all 0.1 linear;
+		margin-top: 100px;
+	
+
+
+
+}
+
+
+
+
+.search-list {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+}
+
+#ss{
+
+
+margin-left: 50px;
+
+}
+
+#ss a{
+
+
+
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+
+</style>
+<body>
+    <%- include("components/navigation") %> 
+    
+
+<div style=" max-width: 1000px; display: flex;flex-wrap: wrap; margin: auto;margin-top: 100px; justify-content: center;">
+
+<div style="width: 700px;">
+<!--search bar using $.ajax-->
+<div class="input-box">
+       
+              <i class="uil uil-search"></i>
+          <input oninput="myFunction()" autocomplete="off" id="searchid" name="searchitem" type="text" placeholder="Enter Username"  value="<% if (typeof data !== 'undefined'){%><%= data %><% } %>"  />
+    <ul class="search-list">
+            <li id="ss"></li>
+            
+          </ul>
+
+        <button onclick="myFunction()"  id="searched" class="searchbutton">Search</button>
+          
+      </div>
+    
+    </div>
+ <script>
+      
+        // Here the value is stored in new variable x 
+        function myFunction() {
+            var x = document.getElementById("searchid").value;
+
+
+
+            
+        document.querySelector('.search-list').style.display = 'block';
+
+
+
+
+
+          if(x.length==0){
+            
+            document.querySelector('.search-list').style.display = 'none';
+  
+            //swal('Oops','Please enter something','error')
+
+          }else{
+            
+        
+
+            $.ajax({
+    type: 'POST',
+    url: '/searchusersnames',
+    data: { name: x },
+    success: function(data) {
+      
+      let html = '';
+    for (let i = 0; i < data.length; i++) {
+      html += '<p>'+`<a href="/user?id=${data[i]._id}">`+ data[i].name + '<a>'+ '</p>';
+    }
+
+if(html.length!==0){
+
+    $('#ss').html(html);
+  
+}else{
+
+  $('#ss').html("<p>sorry ! user does not exist in database with this name</p>");
+  
+
+}
+
+
+
+
+    },
+    error: function(err) {
+        
+        alert("server not responding")
+        
+    }
+});
+            
+            
+            
+        }
+          
+            
+              
+
+        }
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--posts-->
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+<style>
+
+.headerbanner{
+
+max-width: 1100px;
+
+margin: auto;
+}
+.headerbannerimage {
+
+width: 100%;
+height: 300px;
+    background: url("/images/banner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(88, 79, 79);
+    background-blend-mode: overlay;
+color: white;
+font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+
+
+
+
+.m{
+display: flex;
+
+flex-wrap: wrap;
+
+
+
+		max-width: 1200px;
+margin: auto;
+		transition: all 0.1 linear;
+		margin-top: 100px;
+	
+	}
+
+.a{
+margin: 20px;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+
+background: white;
+
+width: 250px;
+height: 455px;
+margin-bottom: 40px;
+border-bottom: 5px solid rgb(30, 178, 30);
+}
+.a a:hover{
+    color:  rgb(30, 178, 30);
+}
+
+
+.a img{
+
+
+    width: 100%;
+    height: 160px;
+    transition: transform 1s;
+}
+
+
+.a img:hover{
+
+transform: scale(1.2);
+
+}
+
+.namedate{
+
+
+    display: flex;
+    justify-content: space-around;
+    
+
+    
+}
+
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.pagination > a,
+.pagination > span {
+	background-color: #fff;
+	color: rgb(79, 77, 77);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	margin: 0 5px 8px;
+	border-radius: 5px;
+	min-width: 40px;
+    font-weight:500;
+	padding: 0 10px;
+	height: 40px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+	text-decoration: none;
+	position: relative;
+	font-family: Helvetica, Arial, sans-serif;
+}
+.pagination > span {
+	pointer-events: none;
+}
+.pagination svg {
+	height: 24px;
+	width: 24px;
+}
+
+.pagination > a:hover {
+	background-color:  #04AA6D;
+	color: #fff;
+}
+
+.activepage{
+
+background:  #04AA6D !important;
+color: white !important;
+
+
+
+}
+.postlink{
+
+
+    color: black;
+    text-decoration: none;
+    
+}
+
+
+.bbb {
+
+    
+  background-color: #04AA6D;
+  color: white;
+  padding: 0px !important;
+  margin: 0px !important;
+  border: none !important;
+  cursor: pointer !important;
+  width: 50px !important;
+  height: 20px !important;
+  font-size: 10px;
+}
+
+
+
+</style>
+<body>
+    
+<%- include('components/navigation.ejs') %> 
+
+
+<!--header image -->
+
+
+<div class="headerbanner">
+
+<div class="headerbannerimage">
+    <h1>Technology Blogs are Trending now a days</h1>
+
+
+
+</div>
+
+
+</div>
+<!--posts title display -->
+
+<div>
+	<h1 style="width: 100%; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;font-size: 30px; text-align: center; color: black; position: relative;top: 40px;"><b>my posts<b></h1>
+        </div>
+
+
+        <!--header post boxex -->
+<div class="m">
+
+
+
+
+<% if(post.length>0) {%>
+    
+<% post.forEach(data=>{%>
+
+
+
+
+
+
+    <div class="a" style="overflow: hidden;">
+    
+    <div style="height: 200px;width: 100%; overflow: hidden;">
+    
+        <img src="/uploads/<%= data.image %> ">
+    </div>
+        <div style="padding: 15px;margin-top: -30px; ">
+            <a class="postlink" href="/postdetail/<%= data._id %> "><h6 ><b><%= data.title.slice(0,22) %>... </b> </h6></a>
+             <p style="font-weight: 100;"> <%= data.post.slice(0,100)%>  </p>
+    
+
+             
+
+    <button class="bbb" ><a style="text-decoration: none;color: white;" href="/update/<%= data._id %> ">update &rarr;</a></button>
+    <button class="bbb" > <a  style="text-decoration: none;color: white;" href="/deletepost/<%= data._id %>"> delete &rarr; </a></button>
+
+    
+</div>
+    
+
+
+
+
+
+<div class="namedate" style="font-weight: 100;font-family:'Courier New', Courier, monospace;font-style: italic;font-size: 12px; color:black;">
+        
+    <div> <p><%= data.uname %> </p></div>
+    
+    <div><%= data.createdAt.toString().slice(0,15) %> </div>
+
+    </div>
+<div><a style="color: #04AA6D; text-decoration: none; margin-left: 20px; font-weight: 500;" href="/postdetail/<%= data._id %> "> Read More</a></div>
+
+
+
+
+
+    
+    
+    </div>
+    
+
+
+
+<%}) %>     
+
+
+
+    <% }else{ %> 
+ 
+
+<h3 style="background-color: rgb(148, 232, 171);width: 100%; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">no post yet </h3>
+
+<% } %> 
+</div>
+
+
+
+
+
+
+<% const totalpages=Math.ceil(count/perpage);
+
+let startloop=current;
+let diff=totalpages-current;
+if(diff<=3){
+
+startloop=totalpages-3
+
+
+}
+let endloop=parseInt(startloop)+3;
+if(startloop<=0){
+
+startloop=1
+
+
+}
+%> 
+
+<% if(count>4 && post.length!==0){%>
+    <div class="pagination">
+
+        <a href="/myposts/1" title="first page"><svg fill="currentColor"><path d="M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6zM11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"/></svg> First</a>
+
+
+ 
+<% if(current>1){ %> 
+    <a href="/myposts/<%= current-1 %>" title="previous page"><svg fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></a>
+
+
+
+<% } %> 
+
+
+<% for(let i=startloop;i<=endloop;i++) { let active=i==current?'activepage':''%>
+    
+    
+
+<a href="/myposts/<%= i%>" class="<%= active%> "><%= i%> </a>
+    <% } %> 
+
+
+    <% if(current<totalpages) {%>
+        <a href="/myposts/<%= parseInt(current)+1 %>" title="next page"><svg fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+<% } %> 
+<a href="/myposts/<%= totalpages %>" title="last page">Last <svg fill="currentColor"><path d="M6.41 6L5 7.41 9.58 12 5 16.59 6.41 18l6-6zM13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"/></svg></a>
+
+
+
+
+
+
+        </div>
+
+
+
+
+<% } %>
+
+ 
+
+
+
+
+
+</body>
+</html>

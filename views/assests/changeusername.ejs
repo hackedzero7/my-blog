@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+     <!--fonts awesome-->
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600'>
+	<title>Input Image With Preview Image</title>
+</head>
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+:root {
+	--blue: #0071FF;
+	--light-blue: #B6DBF6;
+	--dark-blue: #005DD1;
+	--grey: #f2f2f2;
+}
+
+
+
+
+.setting{
+	max-width: 900px;
+
+
+display: flex;
+justify-content: space-around;
+
+margin: auto;
+flex-wrap:wrap;
+
+}
+
+
+
+textarea{
+
+border-left: 5px solid #04AA6D;
+}
+label{
+opacity: 0.5;
+
+}
+button {
+background-color: #04AA6D;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+}
+
+button:hover {
+opacity: 0.8;
+}
+
+
+
+span.psw {
+float: right;
+padding-top: 16px;
+}
+.reg{
+width: 92%;
+position: relative;
+left: 18px;
+
+}
+input{
+
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+border-left: 5px solid #04AA6D;
+
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+span.psw {
+   display: block;
+   float: none;
+}
+.cancelbtn {
+   width: 100%;
+}
+}
+.main{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+max-width: 1050px;
+margin: auto;
+}
+.divleft{
+width: 600px;
+
+
+
+}
+
+.forms {
+
+border-radius: 3px;
+width: 400px;
+box-shadow: 5px 0px 25px 00px #eeecec;
+margin-top: 35px;
+
+}
+
+.divleft img{
+width: 100%;
+margin-top: 35px;
+}
+
+
+
+
+</style>
+<body>
+
+    <%- include('components/navigation.ejs') %> 
+
+
+
+
+
+      <div class="setting">
+<div style="width: 300px; margin-top: 100px;">
+			<%- include('components/sidebar.ejs') %>
+					</div>
+
+
+
+
+
+			<div class="uploader" style="width: 400px; margin-top: 80px;">
+
+
+
+
+	<div style=" width:100%; border: 0.5px solid rgb(152, 147, 147); border-radius: 10px; padding: 10px; margin-top: 50px;"  >
+
+
+<div id="username" style="display: flex; justify-content: space-between; align-items: center;">
+    
+    
+    <div><p style="color: rgb(101, 99, 99); margin-top: 10px;"><b>Username:</b> <b id="un"><%=user.name  %></b></p></div>
+<div> <i style="color: black;font-size: 20px;" class="fa fa-pencil" aria-hidden="true" onclick="editform()"></i></div>
+
+</div>
+
+
+
+<div id="editform" style="display: none;">
+
+
+
+
+
+    
+      
+        <div class="container">
+            <div style="color: red;" id="error"></div>
+          <label for="accupation" placeholder="Enter occupation" name="accupation" id="cars"><b>New User name</b></label>
+      
+      <input id="usrname" type="text" name="accupation" value="" placeholder="enter new username" required>
+      
+         <button class="btn btn-primary" style="margin-top: 22px; background-color:  #04AA6D; width: 35%; border: 0px;" onclick="formsub()">update info</button>
+  
+        </div>
+      
+    
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<script>
+function formsub(){
+
+    
+
+const data=document.getElementById('usrname').value;
+if(data.length>5){
+
+//ajax code to send the user name and update 
+
+
+
+
+$.ajax({
+    type: 'POST',
+    url: '/updateusername',
+    data: { term: data },
+    success: function(data) {
+      const x=JSON.stringify(data);
+      
+      
+      
+        
+    },
+    error: function(err) {
+        
+        alert("not sent");
+        
+    }
+});
+
+
+
+
+
+
+
+
+
+document.getElementById('un').innerText=data;
+
+
+    document.getElementById('editform').style.display="none"
+    document.getElementById('username').style.display="flex"
+
+
+
+
+
+
+
+    
+}
+else{
+
+
+    document.getElementById('error').innerText="please enter valid user name"
+
+
+
+
+}
+
+
+}
+
+
+function editform(){
+
+
+
+document.getElementById('username').style.display="none"
+document.getElementById('editform').style.display="block"
+
+}
+
+
+</script>
+
+
+</div>		
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+</div>
+</body>
+</html>

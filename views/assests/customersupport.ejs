@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%=title%></title>
+
+<style>
+
+body {font-family: Arial, Helvetica, sans-serif;
+}
+
+
+textarea{
+
+  border-left: 5px solid #04AA6D;
+}
+label{
+  opacity: 0.5;
+
+}
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+.reg{
+width: 92%;
+position: relative;
+left: 18px;
+
+}
+select{
+
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-left: 5px solid #04AA6D;
+
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+.main{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+max-width: 1050px;
+margin: auto;
+}
+.divleft{
+width: 600px;
+
+
+
+}
+
+.forms {
+
+border-radius: 3px;
+width: 400px;
+box-shadow: 5px 0px 25px 00px #eeecec;
+margin-top: 35px;
+  
+}
+
+.divleft img{
+  width: 100%;
+margin-top: 35px;
+}
+
+</style>
+</head>
+<body>
+  <%- include('components/navigation.ejs')%>
+
+
+<div class="main">
+<div class="divleft">
+
+<img src="images/cs.jpg" alt="">
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<div class="forms">
+
+
+<form action="/supportmessage" method="post">
+  
+  <div class="container">
+    <label for="reason"><b>Reason</b></label>
+
+    <select name="reason" id="cars">
+      <option value="volvo">payments clearance </option>
+      <option value="saab">forgot passwords</option>
+      <option value="mercedes">any suggestion to us</option>
+      <option value="audi">i want to delete account</option>
+      <option value="audi">other reason</option>
+    </select>
+
+
+
+  
+    <label for="message"><b>Message</b></label>
+    <textarea type="text" placeholder="Enter Message" name="message" style="width: 100%; height: 200px;"></textarea>
+       
+    <button style="margin-top: 12px;" type="submit">submit</button>
+    
+  </div>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

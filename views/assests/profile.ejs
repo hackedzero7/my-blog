@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Unicons CSS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+   
+    <title>Document</title>
+
+</head>
+
+
+<style>
+
+body {font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#mainlayout{
+
+max-width: 1300px;
+overflow: hidden;
+margin: auto;
+
+
+}
+.profile{
+max-width: 1300px;
+margin: auto;
+margin-top: 30px;
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+
+
+}
+
+
+.profilecard{
+    width: 330px;
+    border-radius: 10px;
+    overflow: hidden;
+    
+    
+background-color:white;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 40px;
+
+
+box-shadow : 0 3px 10px rgb(0 0 0  /0.2);
+}
+
+.timedisplay{
+
+width: 750px;
+padding: 20px;
+height: 150px;
+font-family:Georgia, 'Times New Roman', Times, serif;
+border-radius: 5px;
+box-shadow : 0 3px 10px rgb(0 0 0  /0.2);
+border-color: rgb(183, 189, 189);
+
+
+
+}
+
+
+
+@media screen and (max-width:500px) {
+
+    .timedisplay{
+
+        height: 180px;
+    }
+    
+}
+.logo{
+background-color: black;
+height: 70px;
+width: 70px;
+color: white;
+border-radius: 70px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+
+
+}
+.logo img:hover{
+
+
+    transform: scale(1.3);
+}
+.logo h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+font-size: 30px;
+margin-top: 5px;
+
+
+
+}
+
+
+
+.posticon{
+
+background-color: black;
+height: 50px;
+width: 50px;
+color: white;
+border-radius: 70px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.posticon:hover{
+
+
+transform: scale(1.3);
+}
+.posticon h1{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+font-size: 30px;
+margin-top: 5px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.name{
+
+    margin-top: 15px;
+}
+#email{
+margin-top: 7px;
+}
+
+.timedisplay span{
+
+
+
+    font-size: 20px;
+    
+}
+
+
+
+.recentposts{
+
+display: flex;
+flex-direction: column;
+
+max-width: 750px ;
+overflow: hidden;
+
+box-shadow : 0 3px 10px rgb(0 0 0  /0.2);
+
+flex-wrap: wrap;
+
+
+		transition: all 0.1 linear;
+		margin-top: 100px;
+	
+
+
+
+}
+
+
+.a{
+margin: 0px;
+
+display: flex;
+
+flex-wrap: nowrap;
+
+
+
+box-shadow: 0 4px 3px -6px black;
+width: 100%;
+
+margin-bottom: 40px;
+}
+
+
+
+
+
+/*here is the code of the search bar css*/
+
+.input-box {
+
+  
+
+  position: relative;
+  top: -300px;
+  height: 56px;
+  max-width: 750px;
+  width: 100%;
+  background: #fff;
+  
+  margin-left: 45px;
+  
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.input-box i,
+.input-box .searchbutton {
+  position: absolute!important;
+  top: 50% !important;
+  transform: translateY(-50%)!important;
+  
+}
+.input-box i {
+  left: 20px;
+  font-size: 30px;
+  color: #707070;
+}
+.input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  font-weight: 400;
+  border: none !important;
+  padding: 0 155px 0 65px;
+  background-color: transparent;
+}
+.input-box .searchbutton {
+  right: 20px !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 12px 30px !important;
+  border-radius: 6px !important;
+  background-color:#04AA6D !important;
+  cursor: pointer;
+  border-radius: 8px !important;
+  
+}
+.input-box .searchbutton:active {
+  transform: translateY(-50%) scale(0.98);
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .input-box {
+    height: 66px;
+    margin: 0 8px;
+  }
+  .input-box i {
+    left: 12px;
+    font-size: 25px;
+  }
+  .input-box input {
+    padding: 0 112px 0 50px;
+  }
+  .input-box .searchbutton {
+    right: 12px;
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+.imageblog img{
+
+
+    width: 100%;
+    
+    transition: transform 1s;
+}
+
+
+.a img:hover{
+
+transform: scale(1.2);
+
+}
+
+.namedate{
+
+
+display: flex;
+justify-content: space-around;
+align-items: center;
+
+
+
+}
+.name a:hover{
+
+
+    color: #04AA6D !important;
+}
+@media screen and (max-width: 1200px) {
+  .profilecard{
+    margin-top: 30px;
+  }
+.profilecard{
+
+    width: 80%;
+}
+}
+
+
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+    margin-top: 50px;
+}
+.pagination > a,
+.pagination > span {
+	background-color: #fff;
+	color: rgb(79, 77, 77);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	margin: 0 5px 8px;
+	border-radius: 5px;
+	min-width: 40px;
+    font-weight:500;
+	padding: 0 10px;
+	height: 40px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+	text-decoration: none;
+	position: relative;
+	font-family: Helvetica, Arial, sans-serif;
+}
+.pagination > span {
+	pointer-events: none;
+}
+.pagination svg {
+	height: 24px;
+	width: 24px;
+}
+
+.pagination > a:hover {
+	background-color:  #04AA6D;
+	color: #fff;
+}
+
+.activepage{
+
+background:  #04AA6D !important;
+color: white !important;
+
+}
+
+    
+@media screen and (max-width: 1230px) {
+  .recentposts{
+    margin-top: 400px !important;
+    margin: auto;
+    
+  }
+  .profilecard{
+
+    width: 760px !important;
+  }
+  .postss{
+    margin-left: 0px !important;
+  }
+  .input-box{
+
+    margin: auto;
+    position: relative;
+    top: 30px;
+  }
+  
+}        
+        
+        
+
+
+
+
+
+
+
+
+
+.search-list {
+
+  max-height: 200px;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  
+}
+
+#ss{
+
+
+margin-left: 50px;
+
+}
+
+#ss a{
+
+
+
+    text-decoration: none;
+    color: black;
+}
+
+
+
+</style>
+<body>
+
+ 
+ <%- include("components/navigation.ejs")%>
+
+
+<% if(!currentuser.verify){ %>
+
+ <div style="width: 100%; margin: auto; margin-bottom: 0px;" class="alert alert-danger" role="alert">
+  you have 14 days remaining , <a onclick="verifyalert()" href="/verifyaccount" class="alert-link">verify here</a> your account. otherwise your account will be deleted automatically
+</div>
+<% } %>
+    
+
+<script>
+
+function verifyalert(){
+
+
+
+
+	Swal.fire({
+  icon: 'success',
+  title: 'check your email',
+  text: 'Verification link sent , please check your email',
+ 
+  })
+
+
+}
+
+
+</script>
+
+
+<div id="mainlayout">
+
+
+
+      
+
+
+<div class="profile">
+    <%  var utc = new Date().toJSON().slice(8,10)%>
+    
+
+    <div class="timedisplay">
+
+    <% var tarikh=new Date() %> 
+
+    <% var month =tarikh.getMonth()%> 
+    <% var day =tarikh.getDay()  %>
+      <%    var x=monthname(month)%>
+
+
+      <%   var today = new Date()%>
+      <% var curHr = today.getHours() %> 
+      
+     <%   if (curHr < 12) { %>
+        <% var greet='Good morning' %> 
+      <%  } else if (curHr < 18) { %>
+        <%var greet='Good afternoon'  %> 
+      <%  } else { %>
+        <%  var greet='Good evening' %>
+        <%}  %> 
+
+
+
+
+      <% var y=dayname(day)%> 
+   <div style="margin-top: 20px;"> <span><%= y %>,</span> <span><%= x %> </span>  <span><%= utc %>th</span></div>
+
+        <span style="font-size: 35px; font-weight: 900px; font-family:'Times New Roman', Times, serif"><%= greet %> </span><span style="font-size: 35px; font-weight: 900px; font-family:'Times New Roman', Times, serif">,<%= name %> </span>
+    
+     
+
+
+
+
+  <% function monthname(month){%> 
+
+ <%  var months=["january","febuary","march","april","may","june","july","august","september","octumber","november","december"] %>
+
+ <% return months[month] %> 
+ <% } %> 
+
+
+
+
+
+
+
+
+ <% function dayname(day){%> 
+
+    <%  var days=["Monday","Tuesday","Wedusday","thrusday","friday","saturday","sunday"] %>
+    
+    <% return days[day] %> 
+    <% } %> 
+    
+    
+    
+
+
+
+    </div>
+    
+
+
+
+
+ <div class="profilecard">
+
+
+    <div class="logo">
+    
+        
+
+<% if(existphoto==null){ %> 
+
+        <h1><%= name.charAt(0).toUpperCase() %> </h1>
+    <% }else{ %> 
+    
+<img style="width: 100%; height: 70px; width: 73px;border-radius: 50%;" src="/profiles/<%= existphoto.userimage%> ">
+
+
+
+    <% } %> 
+    
+    </div>
+     <div class="name"><b><a style="text-decoration: none;color: black; " href="/userprofilepage/<%= id %> "><%= name.toUpperCase() %></a></b> </div>
+     <div id="email"><%= email %></div>
+    <div>
+
+<%- include("components/progressbar.ejs") %> 
+
+    </div> 
+     
+    </div>
+ 
+    
+
+ </div>
+ 
+
+
+
+<!--search bar-->
+<div>
+
+  
+<div class="input-box">
+  
+    <i class="uil uil-search"></i>
+    
+    <input oninput="suggestpost()" id="searchid" name="searchitem" type="text" placeholder="Search here..." autocomplete="off"/>
+<div class="scroll">  
+    <ul class="search-list">
+      <li id="ss"></li>
+      
+    </ul>
+  </div>
+    <button class="searchbutton" onclick="myFunction()">Search</button>
+  
+  </div>
+
+</div>
+  <script>
+      
+    // Here the value is stored in new variable x 
+    function myFunction() {
+        var x = document.getElementById("searchid").value;
+         
+        if(x.length==0){
+
+
+          Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Please Type Something!',
+  })
+
+          
+
+        }else{
+
+
+        window.location.href = "/search?post="+x 
+        
+        }
+    
+  
+    }
+
+
+
+
+
+
+
+
+
+
+    function suggestpost(){
+
+var x = document.getElementById("searchid").value;            
+document.querySelector('.search-list').style.display = 'block';
+if(x.length==0){
+
+document.querySelector('.search-list').style.display = 'none';
+
+//swal('Oops','Please enter something','error')
+
+}
+
+else{
+
+
+$.ajax({
+type: 'POST',
+url: '/searchrelatedposts',
+data: { name:x },
+success: function(data) {
+
+let html='';
+for (let i = 0; i < data.length; i++) {
+html += '<p>'+`<a href="/search?post=${data[i].title}">`+ data[i].title + '<a>'+ '</p>';
+}
+
+if(html.length!==0){
+
+$('#ss').html(html);
+
+}else{
+
+$('#ss').html("<p>sorry ! user does not exist in database with this name</p>");
+
+
+}
+
+
+
+
+},
+error: function(err) {
+
+alert("not sent");
+
+}
+});
+
+
+
+}
+
+
+
+
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<!--posts-->
+
+<div class="postss" style="width: 720;margin-top: -350px;margin-left: 45px;">
+ <div class="recentposts" style="border-radius: 10px;">
+
+
+
+
+
+
+
+
+
+    <% if(allposts.length>0) {%>
+    
+        <% allposts.forEach(postdata=>{%>
+        
+        
+        
+        
+        
+        
+            <div class="a" style="overflow: hidden;">
+            
+            <div class="imageblog" style="width: 200px; overflow: hidden;">
+            
+                <img src="/uploads/<%= postdata.image %> ">
+            </div>
+                <div class="content" style="padding: 15px; width: 400px;">
+                    <h6><b><%= postdata.title.slice(0,30) %>... </b> </h6>
+                     <p style="font-weight: 100;"> <%= postdata.post.slice(0,100)%>  </p><a style="text-decoration: none; color: #04AA6D; font-weight: 500;" href="/postdetail/<%= postdata._id %> ">Readmore</a>
+                     <% if(typeof postdata.views=="undefined") {%>
+                      <p style="font-size: 15px; color: red; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">views : No views yet</p>
+                     
+                      <% }else{ %>
+                     <p style="font-size: 15px; color: red; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">views <%= postdata.views %></p>
+                     <% } %>
+   
+                     
+     
+        
+        
+                     <div class="namedate" style="font-weight: 100;font-size: 16px; color:black; margin-top: 30px !important;">
+                        
+                      
+
+                       <!--profile logo-->
+                      <div class="posticon">
+                        <% if(postdata.uname){ %> 
+                        <h1><%= postdata.uname.charAt(0).toUpperCase() %> </h1>
+                        
+                       
+                        
+             
+                        <% }%> 
+                            </div>
+
+
+
+                        <!--user name of post uloader-->
+                        <div> <%= postdata.uname %> </div>
+              <!--date post uploaded-->
+                        
+              <div><%= postdata.createdAt.toString().slice(4,15) %> </div>
+                        
+                        </div>
+
+
+
+
+
+        </div>
+            
+   
+        
+        
+        
+        
+        
+        
+            
+            
+        </div>   
+            
+        
+        
+        
+        <%}) %>     
+        
+        
+        
+        <% } %> 
+        
+ </div>
+
+</div>
+
+
+
+
+<!--code for pagination-->
+
+
+<% const totalpages=Math.ceil(count/perpage);
+
+let startloop=current;
+let diff=totalpages-current;
+if(diff<=3){
+
+startloop=totalpages-3
+
+
+}
+let endloop=parseInt(startloop)+3;
+if(startloop<=0){
+
+startloop=1
+
+
+}
+%> 
+
+<% if(count>4 && allposts.length!==0){%>
+    
+
+
+    <div class="pagination">
+
+        <a href="/profile/1" title="first page"><svg fill="currentColor"><path d="M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6zM11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"/></svg> First</a>
+
+
+ 
+<% if(current>1){ %> 
+    <a href="/profile/<%= current-1 %>" title="previous page"><svg fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></a>
+
+
+
+<% } %> 
+
+
+<% for(let i=startloop;i<=endloop;i++) { let active=i==current?'activepage':''%>
+    
+    
+
+<a href="/profile/<%= i%>" class="<%= active%> "><%= i%> </a>
+
+    <% } %> 
+
+
+    
+
+
+    <% if(current<totalpages) {%>
+        <a href="/profile/<%= parseInt(current)+1 %>" title="next page"><svg fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></a>
+<% } %> 
+<a href="/profile/<%= totalpages %>" title="last page">Last <svg fill="currentColor"><path d="M6.41 6L5 7.41 9.58 12 5 16.59 6.41 18l6-6zM13 6l-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"/></svg></a>
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+<% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+</body>
+</html>

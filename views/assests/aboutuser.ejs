@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="style.css">
+	<title>Input Image With Preview Image</title>
+</head>
+<style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+:root {
+	--blue: #0071FF;
+	--light-blue: #B6DBF6;
+	--dark-blue: #005DD1;
+	--grey: #f2f2f2;
+}
+
+
+
+
+.setting{
+	max-width: 900px;
+
+
+display: flex;
+justify-content: space-around;
+
+margin: auto;
+flex-wrap:wrap;
+
+}
+
+
+
+textarea{
+
+border-left: 5px solid #04AA6D;
+}
+label{
+opacity: 0.5;
+
+}
+button {
+background-color: #04AA6D;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+}
+
+button:hover {
+opacity: 0.8;
+}
+
+
+
+span.psw {
+float: right;
+padding-top: 16px;
+}
+.reg{
+width: 92%;
+position: relative;
+left: 18px;
+
+}
+input{
+
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+border-left: 5px solid #04AA6D;
+
+}
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+span.psw {
+   display: block;
+   float: none;
+}
+.cancelbtn {
+   width: 100%;
+}
+}
+.main{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+max-width: 1050px;
+margin: auto;
+}
+.divleft{
+width: 600px;
+
+
+
+}
+
+.forms {
+
+border-radius: 3px;
+width: 400px;
+box-shadow: 5px 0px 25px 00px #eeecec;
+margin-top: 35px;
+
+}
+
+.divleft img{
+width: 100%;
+margin-top: 35px;
+}
+
+
+
+
+</style>
+<body>
+
+    <%- include('components/navigation.ejs') %> 
+
+
+
+
+
+      <div class="setting">
+<div style="width: 300px; margin-top: 100px;">
+			<%- include('components/sidebar.ejs') %>
+					</div>
+
+
+
+
+
+			<div class="uploader" style="width: 400px; margin-top: 50px;">
+
+
+
+
+	<div style=" width:100%;" >
+
+
+
+
+<!--this is form for submit the about info of user-->
+   
+
+<% if(!addmoredata){ %> 
+
+
+
+  <div class="forms">
+
+
+    <form action="/userinfo" method="post">
+      
+      <div class="container">
+        <label for="accupation" placeholder="Enter occupation" name="accupation" id="cars"><b>accupation</b></label>
+    
+    <input type="text" name="accupation" >
+    
+      
+        <label for="message"><b>detail about you</b></label>
+        <textarea type="text" placeholder="Enter Message" name="message" style="width: 100%; height: 200px;" required> </textarea>
+                           <button onclick="submitalert()" style="margin-top: 12px;" type="submit">submit</button>
+
+      </div>
+    
+    </form>
+    
+
+
+
+<!--this is form for submit the about info of user-->
+  <% }else{ %> 
+
+
+
+
+
+    <form action="/updateuserinfo" method="post">
+      
+      <div class="container">
+        <label for="accupation" placeholder="Enter occupation" name="accupation" id="cars"><b>accupation</b></label>
+    
+    <input type="text" name="accupation" value="<% if(addmoredata){ %> <%= addmoredata.occupation %> <% }%>">
+    
+      
+        <label for="message"><b>detail about you</b></label>
+        <textarea type="text" placeholder="Enter Message" name="message" style="width: 100%; height: 200px;" required> <% if(addmoredata){ %> <%= addmoredata.about %> <% }%></textarea>
+       <button onclick="submitalert()" style="margin-top: 12px;" type="submit">update info</button>
+
+      </div>
+    
+    </form>
+
+<script>
+    function submitalert(){
+	
+	
+	
+      Swal.fire({
+      icon: 'success',
+      title: 'uploaded',
+      text: 'Image have been uploaded successfully!',
+     
+    })
+      
+    }
+  </script>
+
+
+
+
+
+<% } %> 
+
+</div>		
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+</div>
+</body>
+</html>

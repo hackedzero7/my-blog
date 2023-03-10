@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   
+</head>
+
+
+
+<style>
+
+.headerbanner{
+
+max-width: 1100px;
+
+margin: auto;
+}
+.headerbannerimage {
+
+width: 100%;
+height: 300px;
+    background: url("/images/banner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(88, 79, 79);
+    background-blend-mode: overlay;
+color: white;
+font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+
+
+
+.m{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+
+
+
+		max-width: 800px;
+margin: auto;
+		transition: all 0.1 linear;
+		
+        box-shadow : 0 3px 10px rgb(0 0 0  /0.2);
+	
+padding: 30px;
+
+	}
+
+.a{
+margin: 20px;
+
+font-size: 20px;
+
+
+
+width: 700px;
+
+margin-bottom: 40px;
+}
+
+
+.a img{
+
+
+    width: 100%;
+    
+    transition: transform 1s;
+}
+
+
+.a img:hover{
+
+transform: scale(1.2);
+
+}
+
+.namedate{
+
+
+    display: flex;
+    justify-content: space-between;
+    
+    width: 700px;
+
+    
+}
+
+
+
+
+
+
+.posticon{
+
+background-color: black;
+height: 50px;
+width: 50px;
+color: white;
+border-radius: 70px;
+
+
+
+}
+.posticon h1{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+text-align: center;
+
+
+}
+
+
+
+
+
+.buttons{
+
+
+    display: flex;
+    width: 700px;
+    margin: auto;
+    
+    margin-top: 50px;
+    margin: auto;
+}
+.buttons button{
+
+    margin: 20px;
+    background-color: #04AA6D;
+    border: 0px;
+}
+
+
+</style>
+
+<body>
+
+    
+    <div> <%- include('components/navigation.ejs') %> </div>
+<!--header image -->
+
+
+<div class="headerbanner">
+
+<div class="headerbannerimage">
+    <h1>Technology Blogs are Trending now a days</h1>
+</div>
+</div>
+
+
+<!--postdetails here-->
+
+            
+<!--btns update and delete-->
+ 
+<% if(loggeduser==postdata.userID){ %> 
+    
+
+     
+
+
+<div class="buttons">
+
+
+    <button style="width: 100px;" class="btn btn-danger"><a style="text-decoration: none;color: white;" href="/update/<%= postdata._id %> ">update </a>  &rarr;</button>
+    <button  style="width: 100px;" class="btn btn-danger"> <a  style="text-decoration: none;color: white;" href="/deletepost/<%= postdata._id %>"> delete &rarr; </a></button>
+    </div>
+    
+    <% } %>
+
+
+
+            <!--header post boxex -->
+    <div class="m">
+    
+    <% if(postdata) {%>
+    
+
+        
+<!--code for user name profile logo and date -->
+        <div class="namedate" style="font-weight: 500;font-size: 16px; color:black;margin-top: 100px;">
+            
+            <div style="display: flex;">
+                
+                
+                           <!--profile logo-->
+                          <div class="posticon" style="margin-top: -12px; margin-right: 10px;">
+                         
+                            <h1 ><%= postdata.uname.charAt(0).toUpperCase() %> </h1>
+                            
+                                </div>
+    
+                
+                <p><%= postdata.uname %> </p>
+    
+                </div>
+            
+            <div><%= postdata.createdAt.toString().slice(0,15) %> </div>
+            
+            </div>
+        
+            
+            
+        
+
+
+
+
+
+
+
+
+
+<!--code for post-->
+
+
+
+        <div class="a" style="overflow: hidden;">
+            <a><h6 style="font-size: 20px;"><b><%= postdata.title %> </b> </h6></a>
+            <br>
+        <div style="width: 100%; overflow: hidden;">
+        
+            <img src="/uploads/<%= postdata.image %> ">
+        </div>
+        <br>
+            <div style="padding: 15px; ">
+               
+                 <p style="font-weight: 200; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;"> <%= postdata.post%>  </p>
+        
+        
+    </div>
+        
+    
+    
+    
+    
+
+
+
+
+
+</div>
+
+
+
+
+
+
+    
+    
+    
+        <% } %> 
+    </div>
+    
+    
+
+
+
+
+    <script>
+
+        setTimeout(function() {
+         
+
+            let x='<%= postid%>'
+    
+           //here is code of ajax req to the server will will update view of post in database 
+            
+         
+
+
+
+
+
+
+           $.ajax({
+    type: 'POST',
+    url: '/viewscounter',
+    data: { term: x },
+    success: function(data) {
+        
+    },
+    error: function(err) {
+        
+        alert("not sent");
+        
+    }
+});
+
+
+
+
+
+
+
+}, 0);
+        
+        
+        
+        
+        
+            </script>
+        
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

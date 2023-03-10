@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+
+
+    <title>Document</title>
+</head>
+
+
+<style>
+
+.postform{
+
+    display: flex;
+justify-content: center;
+
+}
+.mainformdiv{
+    box-shadow: 5px 0px 25px 00px #eeecec;
+
+width: 900px;
+margin-top: 50px;
+
+}
+
+
+
+
+
+input{
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-left: 5px solid #04AA6D;
+
+}
+textarea{
+    border: 1px solid #ccc;
+
+
+}
+label{
+  opacity: 0.3;
+
+}
+
+.errorbox{
+
+
+
+  height: 100px;
+  width: 100%;
+}
+#showimage img{
+
+
+width: 100%;
+
+}
+</style>
+
+
+<body>
+    
+    <%- include('components/navigation.ejs')%>
+    
+
+<div class="postform">
+
+<div class="mainformdiv">
+
+<% if(typeof(errors)!=='undefined'){ %>
+  <div style="background-color: rgb(236, 118, 92);border-left: 5px solid red; padding: 10px;" class="errorbox">
+
+
+<%errors.forEach(data=>{ %> 
+
+  <span style="display:block ;"></span><%= data.msg %>   </span> 
+  
+<% }) %> 
+
+</div> 
+
+   
+
+  <% } %> 
+
+  
+
+
+
+
+
+
+
+<form action="/submitedform" method="post" enctype="multipart/form-data">
+  <form>
+    <div class="container">
+      <label for="title"><b>Title</b></label>
+      <input type="text" placeholder="Enter Username" name="title" value="">
+  
+      
+      <label for="postblog"><b>Body</b></label>
+      <textarea name="postblog" style="height:400px;width: 100%;border-left: 5px solid #04AA6D; "></textarea>   
+        
+    
+
+      <label for="image"><b>Image</b></label>
+      <input id="filechose" type="file" placeholder="Enter Password" name="image" required>
+      <div style="width: 100%;" id="showimage" data-img="">
+      <img src="">
+      
+      </div>
+
+
+      <button class="btn btn-success" style="margin-top: 22px; width: 100%; margin-bottom: 20px;background-color: #04AA6D !important; border-radius: 0px !important;"  type="submit">save post</button>
+      
+    </div>
+  
+  </form>
+</div>
+<script>
+
+  const inputFile=document.querySelector('#filechose');
+  const imgArea = document.querySelector('#showimage');
+
+inputFile.addEventListener('change', function () {
+	const image = this.files[0]
+	if(image.size < 9000000) {
+		const reader = new FileReader();
+		reader.onload = ()=> {
+			const allImg = imgArea.querySelectorAll('img');
+			allImg.forEach(item=> item.remove());
+			const imgUrl = reader.result;
+			const img = document.createElement('img');
+			img.src = imgUrl;
+			imgArea.appendChild(img);
+			imgArea.classList.add('active');
+			imgArea.dataset.img = image.name;
+		}
+		reader.readAsDataURL(image);
+	} else {
+		alert("Image size more than 2MB");
+	}
+})
+    </script>
+
+
+
+
+</div>
+
+</body>
+</html>

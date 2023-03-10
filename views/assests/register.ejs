@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=title%></title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;
+}
+
+label{
+  opacity: 0.5;
+
+}
+
+.forms {
+
+border-radius: 3px;
+margin-top: 10px;
+box-shadow: 5px 0px 25px 00px #eeecec;
+  
+}
+
+input[type=text], input[type=password],input[type=email],input[type=number] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-left: 4px solid #04AA6D;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  height: 120px;
+  max-width: 300px;
+
+  margin: auto;
+}
+.imgcontainer img{
+  width: 100%;
+  height: 100%;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+.reg{
+width: 92%;
+position: relative;
+left: 18px;
+
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+.main{
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+max-width: 1050px;
+margin: auto;
+
+
+
+}
+.divright{
+width: 400px;
+margin-top: 50px;
+
+
+}
+.divleft{
+width: 600px;
+
+
+
+}
+.divleft img{
+  width: 100%;
+  margin-top: 50px;
+}
+
+</style>
+</head>
+<body>
+
+  <%- include("components/navigation.ejs")%>
+
+
+
+
+<div class="main">
+<div class="divleft">
+
+<img src="images/Capture.jpg" alt="">
+
+</div>
+
+
+
+
+
+
+<div class="divright">
+
+  
+
+  <% if(typeof (errors) !== 'undefined'){ %>
+    <div style="background-color: rgb(236, 118, 92);border-left: 5px solid red; padding: 10px;">
+      <% errors.forEach(element => { %>
+  
+  <span style="display:block ;"><%= element.msg%></span>
+  
+  
+   
+
+
+    <% }) %>
+  </div>        
+    
+      
+    <% } %> 
+
+
+
+
+<div class="forms">
+<form action="/registration" method="post">
+  
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="email"><b>email</b></label>
+    <input type="email" placeholder="Enter email" name="email" required>
+    <label for="cno"><b>contact no</b></label>
+    <input type="number" placeholder="Enter Username" name="cno" required>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+        
+    <button type="submit">register</button>
+    
+  </div>
+
+</form>
+
+
+</div>
+
+</div>
+</div>
+</body>
+</html>
